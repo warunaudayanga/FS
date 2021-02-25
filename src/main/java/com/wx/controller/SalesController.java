@@ -1,8 +1,7 @@
 package com.wx.controller;
 
-import com.wx.jdbc.DataSource;
 import com.wx.dto.Sales;
-import org.intellij.lang.annotations.Language;
+import com.wx.jdbc.DataSource;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
@@ -23,7 +22,7 @@ public class SalesController {
     @PostMapping("/search")
     public @ResponseBody
     String search(String term, String sort, String order){
-        String query = String.format("SELECT id, saleId, s.itemCode, i.name, price, qty, unit, user, fName, lName, salesDate " +
+        String query = String.format("SELECT id, saleId, s.itemCode, i.name, size, price, qty, unit, user, fName, lName, salesDate " +
                 "FROM sales s, items i, employee e WHERE s.itemCode=i.itemCode AND user=empID " +
                 "AND (saleId LIKE '%s' OR i.itemCode LIKE '%s' OR name LIKE '%s' OR CONCAT(fName, ' ', lName) LIKE '%s' OR salesDate LIKE '%s') " +
                 "ORDER BY %s %s", "%" + term + "%", "%" + term + "%", "%" + term + "%", "%" + term + "%", "%" + term + "%", sort, order);
@@ -45,7 +44,7 @@ public class SalesController {
                             .put("value", rs.getInt("saleId"))
                             .put("attr", "data-sale-id"));
                     jsArr.put(rs.getString("itemCode"));
-                    jsArr.put(rs.getString("name"));
+                    jsArr.put(rs.getString("name") + " - " + rs.getString("size"));
                     jsArr.put(rs.getDouble("price") > 0? new DecimalFormat("#,###.00").format(rs.getDouble("price")): "0.00");
                     String qty = rs.getInt("qty") == rs.getDouble("qty")? String.valueOf(rs.getInt("qty")): String.valueOf(rs.getDouble("qty"));
                     jsArr.put(qty + (rs.getString("unit").equals("kg")? "&#13199;": rs.getString("unit").equals("l")? "&ell;": ""));
@@ -87,7 +86,6 @@ public class SalesController {
         String sql = "INSERT INTO sales (saleId, itemCode, price, qty, user) VALUES " + values;
         if(DataSource.writeData(sql)) {
             DataSource.writeData("UPDATE appdata SET dataValue=" + sales.getSaleId() + " WHERE dataKey='lastSale'");
-            StringBuilder stockSQL = new StringBuilder();
             for (int j = 0; j < sales.getItems().size(); j++) {
                  DataSource.writeData("UPDATE stock SET qty = qty - " + sales.getItems().get(j).getQty() + " WHERE itemCode=" + sales.getItems().get(j).getItemCode() + " AND price=" + sales.getItems().get(j).getPrice());
             }

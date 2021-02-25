@@ -1,13 +1,15 @@
 package com.wx.controller;
 
-import com.sun.org.apache.bcel.internal.generic.NEW;
-import com.wx.jdbc.DataSource;
 import com.wx.dto.Purchase;
+import com.wx.jdbc.DataSource;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,7 +24,7 @@ public class PurchasesController {
     @PostMapping("/search")
     public @ResponseBody
     String search(String term, String sort, String order) {
-        String sql = String.format("SELECT id, orderId, p.itemCode, i.name as iName, price, sPrice, qty, unit, s.name as sName, ordDate, purDate, p.status " +
+        String sql = String.format("SELECT id, orderId, p.itemCode, i.name as iName, size, price, sPrice, qty, unit, s.name as sName, ordDate, purDate, p.status " +
                 "FROM purchases p, items i, suppliers s WHERE p.itemCode=i.itemCode AND p.supID=s.supID " +
                 "AND (orderId LIKE '%s' OR p.itemCode LIKE '%s' OR price LIKE '%s' OR sPrice LIKE '%s' OR i.name LIKE '%s' OR s.name LIKE '%s') ORDER BY %s %s",
                 "%" + term + "%", "%" + term + "%", "%" + term + "%", "%" + term + "%", "%" + term + "%", "%" + term + "%", sort, order);
@@ -44,7 +46,7 @@ public class PurchasesController {
                             .put("value", rs.getInt("orderId"))
                             .put("attr", "data-order-id"));
                     jsArr.put(rs.getString("itemCode"));
-                    jsArr.put(rs.getString("iName"));
+                    jsArr.put(rs.getString("iName") + " - " + rs.getString("size"));
                     jsArr.put(rs.getDouble("price") > 0? new DecimalFormat("#,###.00").format(rs.getDouble("price")): "0.00");
                     jsArr.put(rs.getDouble("sPrice") > 0? new DecimalFormat("#,###.00").format(rs.getDouble("sPrice")): "0.00");
                     String qty = rs.getInt("qty") == rs.getDouble("qty")? String.valueOf(rs.getInt("qty")): String.valueOf(rs.getDouble("qty"));
@@ -110,7 +112,7 @@ public class PurchasesController {
             if (rs != null && rs.next()){
                 String sql2 = "SELECT itemCode FROM stock WHERE itemCode=" + rs.getInt("itemCode") + " AND price=" + rs.getDouble("sPrice");
                 try (PreparedStatement pstSt = con.prepareStatement( sql2 );
-                     ResultSet rsSt = pstSt.executeQuery();){
+                     ResultSet rsSt = pstSt.executeQuery()){
                     if (rsSt != null && rsSt.next()) {
                         if (status == 1) {
                             DataSource.writeData("UPDATE stock SET qty = qty + " + rs.getDouble("qty") + " WHERE itemCode=" + rs.getInt("itemCode") + " AND price=" + rs.getDouble("sPrice"));

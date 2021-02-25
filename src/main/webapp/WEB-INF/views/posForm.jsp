@@ -5,7 +5,7 @@
         <tr>
             <td>Position Name <span class="text-danger">*</span></td>
             <td>
-                <input type="text" class="form-control form-control-sm" data-msg="Name" name="name" maxlength="20" value="${name}">
+                <input type="text" class="form-control form-control-sm" data-title-case data-msg="Name" name="name" maxlength="20" value="${name}">
             </td>
         </tr>
     </table>

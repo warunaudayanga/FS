@@ -24,13 +24,13 @@
         <tr>
             <td>First Name <span class="text-danger">*</span></td>
             <td>
-                <input type="text" class="form-control form-control-sm" data-msg="First name" name="fName" maxlength="20" value="${fName}">
+                <input type="text" class="form-control form-control-sm" data-title-case data-msg="First name" name="fName" maxlength="20" value="${fName}">
             </td>
         </tr>
         <tr>
             <td>Last Name <span class="text-danger">*</span></td>
             <td>
-                <input type="text" class="form-control form-control-sm" data-msg="Last name" name="lName" maxlength="20" value="${lName}">
+                <input type="text" class="form-control form-control-sm" data-title-case data-msg="Last name" name="lName" maxlength="20" value="${lName}">
             </td>
         </tr>
         <tr>

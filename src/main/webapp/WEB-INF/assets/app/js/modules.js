@@ -40,9 +40,9 @@ class SnackBar {
             if($(this)[0].type == 'radio' && !$(this).is(':checked')) return;
             if(this.hasAttribute('data-set')){
                 if(obj['items'][$(this).data('set') - 1] === undefined) obj['items'][$(this).data('set') - 1] = {}
-                obj['items'][$(this).data('set') - 1][this.name] = this.value.replace(/'/i, "\\'");
+                obj['items'][$(this).data('set') - 1][this.name] = this.hasAttribute('data-title-case')? this.value.replace(/'/i, "\\'").titleCase(): this.value.replace(/'/i, "\\'");
             }else {
-                obj[this.name] = this.type == 'checkbox' ? this.checked : this.value.replace(/'/i, "\\'");
+                obj[this.name] = this.type == 'checkbox' ? this.checked : this.hasAttribute('data-title-case')? this.value.replace(/'/i, "\\'").titleCase(): this.value.replace(/'/i, "\\'");
             }
         });
         if(form[0].hasAttribute('data-array')) {
@@ -65,6 +65,15 @@ class SnackBar {
     };
 
 })(jQuery);
+
+// Title Case
+String.prototype.titleCase = function () {
+    let str = this.toLowerCase().split(" ");
+    for (let i = 0; i < str.length; i++) {
+        str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1);
+    }
+    return str.join(' ');
+}
 
 
 
