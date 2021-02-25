@@ -14,9 +14,9 @@ public class DataSource {
 //        ds.setUsername("root");
 //        ds.setPassword("toor");
 
-        ds.setUrl("jdbc:mysql://cis9cbtgerlk68wl.cbetxkdyhwsb.us-east-1.rds.amazonaws.com/tltpuweeovcae4h0");
-        ds.setUsername("xnuviaajp26iu5pg");
-        ds.setPassword("wzpkbp5rkwfw0yfe");
+        ds.setUrl("jdbc:mysql://cis9cbtgerlk68wl.cbetxkdyhwsb.us-east-1.rds.amazonaws.com/ornk3mji0rha8t98");
+        ds.setUsername("zkqpjin7s2gdfbm3");
+        ds.setPassword("rjhnr0kwkoqhzuel");
 
         ds.setMinIdle(5);
         ds.setMaxIdle(10);
