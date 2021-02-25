@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="jdbc-drivers">
+    <CLASSES>
+      <root url="file://$APPLICATION_CONFIG_DIR$/jdbc-drivers" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://$APPLICATION_CONFIG_DIR$/jdbc-drivers" recursive="false" />
+  </library>
+</component>

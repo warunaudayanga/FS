@@ -1,0 +1,17 @@
+.title {
+    margin: 150px 0 50px 0;
+    text-align: center;
+}
+.modal-dialog {
+    margin-top: 150px;
+}
+.jconfirm.jconfirm-light .jconfirm-bg {
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+.consolas {
+    font-family: "Consolas", serif;
+}
+.database.big {
+    font-size: 17px;
+}

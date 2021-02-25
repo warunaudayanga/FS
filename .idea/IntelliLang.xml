@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="LanguageInjectionConfiguration">
+    <injection language="MySQL" injector-id="java">
+      <display-name>String.format (java.lang)</display-name>
+      <place disabled="true"><![CDATA[psiParameter().ofMethod(0, psiMethod().withName("format").withParameters("java.lang.String", "java.lang.Object...").definedInClass("java.lang.String"))]]></place>
+    </injection>
+  </component>
+</project>
