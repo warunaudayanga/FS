@@ -60,7 +60,7 @@
     </div>
 
     <div id="content" class="content container-fluid">
-        <div class="home-screen">Welcome Po</div>
+        <div class="home-screen">Welcome</div>
     </div>
 
     <div class="footer">
