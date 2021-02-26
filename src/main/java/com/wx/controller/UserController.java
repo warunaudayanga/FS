@@ -81,7 +81,7 @@ public class UserController {
                 return "{\"data\": \"exist\"}";
             }else {
                 String sql2 = String.format("INSERT INTO employee (fName, lName, password, dob, nic, gender, position, address, phone, status) VALUE ('%s','%s','%s','%s','%s','%s','%d','%s','%s','%s')",
-                        emp.getfName(), emp.getlName(), emp.getPassword(), emp.getDob(), emp.getNic(), emp.getGender(), emp.getPosition(), emp.getAddress(), emp.getPhone(), emp.isStatus()? 1 : 0);
+                        emp.getfName(), emp.getlName(), emp.getPassword(), emp.getDob(), emp.getNic(), emp.getGender(), emp.getPosition(), emp.getAddress(), emp.getPhone().replaceAll("[\\s-]", ""), emp.isStatus()? 1 : 0);
                 return "{\"data\": " + DataSource.writeData(sql2) + "}";
             }
         } catch (SQLException e) {
@@ -100,7 +100,7 @@ public class UserController {
                 return "{\"data\": \"exist\"}";
             }else {
                 String sql2 = String.format("UPDATE employee SET fName='%s', lName='%s', password='%s', dob='%s', nic='%s', gender='%s', position='%d', address='%s', phone='%s', status='%s' WHERE empID='%d'",
-                        emp.getfName(), emp.getlName(), emp.getPassword(), emp.getDob(), emp.getNic(), emp.getGender(), emp.getPosition(), emp.getAddress(), emp.getPhone(), emp.isStatus()? 1 : 0, emp.getId());
+                        emp.getfName(), emp.getlName(), emp.getPassword(), emp.getDob(), emp.getNic(), emp.getGender(), emp.getPosition(), emp.getAddress(), emp.getPhone().replaceAll("[\\s-]", ""), emp.isStatus()? 1 : 0, emp.getId());
                 return "{\"data\": " + DataSource.writeData(sql2) + "}";
             }
         } catch (SQLException e) {

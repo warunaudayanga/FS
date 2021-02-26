@@ -78,14 +78,14 @@ public class SupplierController {
     @PostMapping(value = "/add")
     public @ResponseBody String add(Supplier supplier){
         String sql = String.format("INSERT INTO suppliers (name, address, email, phone, mobile, status) VALUE ('%s','%s','%s','%s','%s','%d')",
-                supplier.getName(), supplier.getAddress(), supplier.getEmail(), supplier.getPhone(), supplier.getMobile(), supplier.isStatus()? 1 : 0);
+                supplier.getName(), supplier.getAddress(), supplier.getEmail(), supplier.getPhone().replaceAll("[\\s-]", ""), supplier.getMobile(), supplier.isStatus()? 1 : 0);
         return "{\"data\": " + DataSource.writeData(sql) + "}";
     }
 
     @PostMapping(value = "/update")
     public @ResponseBody String update(Supplier supplier){
         String sql = String.format("UPDATE suppliers SET name='%s', address='%s', email='%s', phone='%s', mobile='%s', status='%d' WHERE supID='%d'",
-                supplier.getName(), supplier.getAddress(), supplier.getEmail(), supplier.getPhone(), supplier.getMobile(), supplier.isStatus()? 1 : 0, supplier.getId());
+                supplier.getName(), supplier.getAddress(), supplier.getEmail(), supplier.getPhone().replaceAll("[\\s-]", ""), supplier.getMobile(), supplier.isStatus()? 1 : 0, supplier.getId());
         return "{\"data\": " + DataSource.writeData(sql) + "}";
     }
 
