@@ -43,7 +43,7 @@
             <td class="w-p50 text-center">1</td>
             <td>
                 <select class="form-control form-control-sm select-picker" data-live-search="true" data-set="1" title=" &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Choose item - " name="itemCode">
-                    <%  String sql2 = "SELECT s.id, i.itemCode, NAME, price, qty, unit, (SELECT COUNT(*) > 1 FROM stock sc " +
+                    <%  String sql2 = "SELECT s.id, i.itemCode, NAME, size, price, qty, unit, (SELECT COUNT(*) > 1 FROM stock sc " +
                             "WHERE sc.itemCode=s.itemCode) AS multi FROM items i, stock s WHERE STATUS!=0 AND i.itemCode=s.itemCode ORDER BY i.itemCode";
                         try (Connection con = DataSource.getConnection();
                            PreparedStatement pst = con.prepareStatement( sql2 );
