@@ -27,10 +27,10 @@
             <td class="text-right pr-3">Sale ID</td>
             <td class="w-p75"><input type="text" class="form-control form-control-sm text-center no-reset" data-print name="saleId" value="<%=salesId%>" readonly></td>
         </tr>
+        <tr>
+            <td colspan="4"><button class="btn btn-sm btn-success add-item float-right">Add Item</button></td>
+        </tr>
     </table>
-    <div class="row">
-        <div class="col-12 mb-3"><button class="btn btn-sm btn-success add-item float-right">Add Item</button></div>
-    </div>
     <table class="prompt-table items w-100">
         <tr>
             <th class="w-p50">#</th>
@@ -42,7 +42,7 @@
         <tr>
             <td class="w-p50 text-center">1</td>
             <td>
-                <select class="form-control form-control-sm select-picker" data-live-search="true" data-set="1" title=" &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Choose item - " name="itemCode">
+                <select class="form-control form-control-sm select-picker focus-me" data-live-search="true" data-set="1" title=" &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Choose item - " name="itemCode">
                     <%  String sql2 = "SELECT s.id, i.itemCode, NAME, size, price, qty, unit, (SELECT COUNT(*) > 1 FROM stock sc " +
                             "WHERE sc.itemCode=s.itemCode) AS multi FROM items i, stock s WHERE STATUS!=0 AND i.itemCode=s.itemCode ORDER BY i.itemCode";
                         try (Connection con = DataSource.getConnection();

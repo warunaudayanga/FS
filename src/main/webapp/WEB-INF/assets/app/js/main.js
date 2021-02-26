@@ -4,7 +4,7 @@ let snackBar = new SnackBar();
 let spinner = true
 let spinnerCount = 0;
 let blockWindow = false
-//$(() => $('.nav-item[data-view="users"]').trigger( "click" ));
+$(() => $('.nav-item[data-view="sales"]').trigger( "click" ));
 
 
 setInterval(function () {
@@ -115,6 +115,7 @@ const prompt = (path, type, id = false) => {
                     if(this.hasAttribute('data-sibling-name')) $this.siblings('button').width(($( `[name="${$this.data('sibling-name')}"]`).outerWidth() + 3) + 'px')
                 });
                 $(`[data-set][max]`).qtyTip();
+
             } else {
                 this.setTitle("Print Preview");
                 if (path == 'purchase') $('#printView').css('transform', 'translateX(-8%) translateY(-8%) scale(0.8)');
@@ -122,15 +123,23 @@ const prompt = (path, type, id = false) => {
             $('.datepicker').datepicker({format: "yyyy-mm-dd", autoclose: true});
             let lastElementName = '';
             let i = 1;
-            this.$content.find('input:not([readonly], [disabled], [role="combobox"]), textarea:not([readonly], [disabled]), button.dropdown-toggle:not([readonly], [disabled]), select:not(.select-picker, [readonly], [disabled])').each(function () {
+            this.$content.find('input:not([readonly], [disabled], [role="combobox"], [type="hidden"]), textarea:not([readonly], [disabled]), button.dropdown-toggle:not([readonly], [disabled]), select:not(.select-picker, [readonly], [disabled])').each(function () {
                 if(this.type == 'radio') {
                     if($(this).prop('name') == lastElementName) return true;
                     lastElementName = $(this).prop('name');
                 }
                 $(this).attr('data-index', i++);
             })
-            this.$content.find('button, input, textarea, select:not(.select-picker)').first().trigger('focus').select()
-
+            if (this.$content.find('.focus-me').length > 0) {
+                let elem = this.$content.find('.focus-me').first();
+                tmp = elem;if(elem.hasClass('select-picker')) {
+                    console.log(elem.find('button'));
+                    elem.find('button').trigger('focus').trigger('select');
+                }
+                // elem.focus();
+            } else {
+                this.$content.find('button, input:not([type="hidden"]):not(.no-reset), textarea, select:not(.select-picker)').first().trigger('focus').select();
+            }
         },
         buttons: {
             cancel: {
@@ -528,6 +537,10 @@ $(document).on('click', '#purchaseForm .add-item', function () {
         style: 'form-control',
         styleBase: 'form-control'
     });
+    let lastIndex = $('.prompt-table').find('[data-index]').last().data('index');
+    $('.prompt-table').find('.dropdown-toggle, [data-set]').not('[data-index], select, [readonly]').each(function () {
+        $(this).attr('data-index', ++lastIndex);
+    })
     if($('#purchaseForm .delete-item').length > 1) $('#purchaseForm .delete-item').prop('disabled', false);
     return false;
 });
@@ -588,6 +601,10 @@ $(document).on('click', '#salesForm .add-item', function () {
         liveSearchPlaceholder: 'Search'
     });
     $(`[data-set="${newSet}"][max]`).qtyTip();
+    let lastIndex = $('.prompt-table').find('[data-index]').last().data('index');
+    $('.prompt-table').find('.dropdown-toggle, [data-set]').not('[data-index], select, [readonly]').each(function () {
+        $(this).attr('data-index', ++lastIndex);
+    })
     if($('#salesForm .delete-item').length > 1) $('#salesForm .delete-item').prop('disabled', false);
     return false;
 });

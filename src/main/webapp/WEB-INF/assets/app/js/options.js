@@ -1,8 +1,7 @@
 $(() => {
     $(document).on('keydown',  (e) => {
-
         // noinspection JSUnresolvedVariable
-        if (this !== e.target && (/input|textarea|select/i.test( e.target.nodeName ))) {
+        if (this !== e.target && (/input|textarea|select|button/i.test( e.target.nodeName ))) {
             if(e.key.search(/^F[\d]$/i) > -1
                 || e.shiftKey && e.key == 'Escape'
                 || e.ctrlKey && !(e.key.search(/^[ACVPXYZ]$/i) > -1)
@@ -17,8 +16,11 @@ $(() => {
                     return false;
                 } else if(e.key == 'Enter') {
                     tmp = $(event.target);
-                    if (!($(event.target).data('msg') !== undefined && ($(event.target).val().trim() == '' || $(event.target).val() == null) || (($(event.target).hasClass('dropdown-toggle') && $(event.target).siblings('select').val() == null)))) {
+                    if(($(event.target).hasClass('dropdown-toggle') && $(event.target).siblings('select').val() == '')){
+                        $(event.target).click();
+                    } else if (!($(event.target).data('msg') !== undefined && ($(event.target).val().trim() == '' || $(event.target).val() == null))) {
                         let nextInput = $('[data-index="' + ($(event.target).data('index') + 1) + '"]');
+                        console.log(nextInput);
                         if (nextInput.length) {
                             nextInput.trigger('focus').trigger('select');
                             return false;
@@ -29,8 +31,8 @@ $(() => {
                         return;
                     }
                     return false;
-                } else if(e.key == '+' && $('#purchaseForm .prompt-table .add-item').length) {
-                    $('#purchaseForm .prompt-table .add-item').trigger('click');
+                } else if(e.key == '+' && $('.prompt-table .add-item').length) {
+                    $('.prompt-table .add-item').trigger('click');
                     return false;
                 }
 
