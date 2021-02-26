@@ -56,7 +56,7 @@
                             String qt = rs.getInt("qty") == qty? String.valueOf(rs.getInt("qty")): String.valueOf(qty);
                             String unit = rs.getString("unit");
                             BigDecimal price = rs.getBigDecimal("price");
-                            String name = rs.getString("name");
+                            String name = rs.getString("name") + " - " + rs.getString("size");
                             String priceText = multi? " (Rs. " + price + ")": "";
                             String outText = qty == 0? " - Out of stock": "";
                             String title = "<span class='" + (qty == 0? "text-danger": "") + "'>" + itemCode + " - " + name + "</span>";
