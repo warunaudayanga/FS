@@ -35,24 +35,6 @@ $(() => {
                     $('.prompt-table .add-item').trigger('click');
                     return false;
                 }
-
-                // if(e.shiftKey && e.key == 'Enter') {
-                //     $(event.target).parents('tr').prev().find('input:not([readonly],[disabled]), textarea:not([readonly], [disabled]), button.dropdown-toggle:not([readonly], [disabled]), select:not(.select-picker, [readonly], [disabled])')
-                //         .first().trigger('focus').select();
-                //     return false;
-                // } else if(e.key == 'Enter') {
-                //     if (!($(event.target).data('msg') !== undefined && ($(event.target).val().trim() == '' || $(event.target).val() == null) || (($(event.target).hasClass('dropdown-toggle') && $(event.target).siblings('select').val() == null)))) {
-                //         let nextInput = $(event.target).parents('tr').next().find('input, textarea, button.dropdown-toggle, select:not(.select-picker)');
-                //         if (nextInput.length) {
-                //             nextInput.first().trigger('focus').select();
-                //             return false;
-                //         } else if($(e.target).attr('role') != 'combobox') {
-                //             $('.jconfirm-box').find('.btn-blue').trigger('click');
-                //         }
-                //         return;
-                //     }
-                //     return false;
-                // }
             }
             return;
         } else if($('.jconfirm-box').length) {
@@ -113,5 +95,5 @@ $(() => {
         return false;
     });
     window.onresize = () => window.resizeTo(1040, 700);
-    //document.oncontextmenu = (e) => e.preventDefault();
+    document.oncontextmenu = (e) => e.preventDefault();
 });
