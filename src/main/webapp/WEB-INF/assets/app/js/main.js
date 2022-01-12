@@ -727,7 +727,7 @@ $(document).on('click', '#preferencesView .options .save', function () {
             'Content-Type': 'application/json'
         },
         success: function(result){
-            if(result) snackBar.success('User access changed successfully.');
+            if(result) snackBar.success('Preferences changed successfully.');
         }
     });
 });

@@ -18,9 +18,9 @@
     <title>Login</title>
 </head>
 <body>
-<div class="container-fluid">
-    <div class="row">
-        <div class="offset-lg-4 offset-md-4 col-lg-4 col-md-4">
+<div class="container-fluid vh-100">
+    <div class="row h-100 align-content-center">
+        <div class="offset-lg-4 offset-md-4 col-lg-4 col-md-4 mb-5">
             <h1 class="title"><%=App.config.containsKey("appTitle") && !App.config.getString("appTitle").isEmpty()? App.config.getString("appTitle"): "Fast Solutions"%></h1>
             <div class="input-group input-group-lg mb-3">
                 <div class="input-group-prepend">
@@ -34,7 +34,7 @@
                 </div>
                 <input id="password" type="password" class="form-control" placeholder="Password" maxlength="20">
             </div>
-            <button id="login" class="btn btn-lg btn-primary ml-auto mr-auto d-block">Login</button>
+            <button id="login" class="btn btn-lg btn-primary ml-auto mr-auto mt-3 d-block">Login</button>
         </div>
         <div class="col-lg-4 col-md-4 mt-5">
         </div>
