@@ -10,10 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f8edc28b-1a7a-408b-a0a3-54df6e3a5ec2" name="Changes" comment="After long time">
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Tomcat_8_5_97.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Tomcat_8_5_97.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wx/jdbc/DataSource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wx/jdbc/DataSource.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -168,7 +166,7 @@
       <workItem from="1703268865319" duration="2632000" />
       <workItem from="1703271696984" duration="1686000" />
       <workItem from="1703274913715" duration="1895000" />
-      <workItem from="1703280084152" duration="2406000" />
+      <workItem from="1703280084152" duration="3169000" />
     </task>
     <task id="LOCAL-00001" summary="New Changes and Configs">
       <created>1642008186335</created>
@@ -216,7 +214,15 @@
       <option name="project" value="LOCAL" />
       <updated>1703280904145</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="After long time">
+      <option name="closed" value="true" />
+      <created>1703282527133</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1703282527133</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
