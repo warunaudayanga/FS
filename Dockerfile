@@ -15,7 +15,7 @@ FROM tomcat:8.5-jdk8
 WORKDIR /usr/local/tomcat/webapps
 
 # Copy the WAR file from the build stage to Tomcat's webapps directory
-COPY --from=build /app/target/fs-1.0-SNAPSHOT.war /usr/local/tomcat/webapps/fs.war
+COPY --from=build /app/target/fs-1.0-SNAPSHOT.war /usr/local/tomcat/webapps/ROOT.war
 
 # Expose the port Tomcat will run on
 EXPOSE 8080

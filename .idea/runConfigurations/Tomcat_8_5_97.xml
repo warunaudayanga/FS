@@ -81,7 +81,9 @@
     </ConfigurationWrapper>
     <method v="2">
       <option name="Make" enabled="true" />
-      <option name="BuildArtifacts" enabled="false" />
+      <option name="BuildArtifacts" enabled="false">
+        <artifact name="fs:war exploded" />
+      </option>
     </method>
   </configuration>
 </component>
