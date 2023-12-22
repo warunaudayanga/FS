@@ -10,6 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f8edc28b-1a7a-408b-a0a3-54df6e3a5ec2" name="Changes" comment="After long time">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -146,7 +147,7 @@
       <workItem from="1703268865319" duration="2632000" />
       <workItem from="1703271696984" duration="1686000" />
       <workItem from="1703274913715" duration="1895000" />
-      <workItem from="1703280084152" duration="365000" />
+      <workItem from="1703280084152" duration="809000" />
     </task>
     <task id="LOCAL-00001" summary="New Changes and Configs">
       <created>1642008186335</created>
@@ -178,7 +179,15 @@
       <option name="project" value="LOCAL" />
       <updated>1703280125098</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="After long time">
+      <option name="closed" value="true" />
+      <created>1703280465504</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1703280465504</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

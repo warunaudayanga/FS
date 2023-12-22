@@ -1,5 +1,5 @@
 # Stage 1: Build Maven project
-FROM maven:3.8.4-openjdk-11 AS build
+FROM maven:3.8.4-openjdk-8 AS build
 WORKDIR /app
 
 # Copy only the pom.xml file to cache dependencies
@@ -10,8 +10,8 @@ RUN mvn dependency:go-offline
 COPY . .
 RUN mvn package
 
-# Stage 2: Create a lightweight image with Tomcat
-FROM tomcat:9.0-jdk11-openjdk-slim
+# Stage 2: Create a lightweight image with Tomcat 8 and Oracle JDK 8
+FROM tomcat:8.5-jdk8
 WORKDIR /usr/local/tomcat/webapps
 
 # Copy the WAR file from the build stage to Tomcat's webapps directory
