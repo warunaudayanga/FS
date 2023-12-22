@@ -1,3 +1,4 @@
 # Project exclude paths
 /target/
 /dev.sql
+/apache-tomcat-8.5.97/

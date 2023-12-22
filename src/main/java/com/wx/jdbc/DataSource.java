@@ -12,7 +12,7 @@ public class DataSource {
 
         ds.setUrl("jdbc:mysql://localhost/pos");
         ds.setUsername("root");
-        ds.setPassword("");
+        ds.setPassword("root");
 
 //        ds.setUrl("jdbc:mysql://cis9cbtgerlk68wl.cbetxkdyhwsb.us-east-1.rds.amazonaws.com/ornk3mji0rha8t98");
 //        ds.setUsername("zkqpjin7s2gdfbm3");
@@ -28,11 +28,13 @@ public class DataSource {
     }
 
     public static boolean writeData(String sql) {
+        //noinspection SqlSourceToSinkFlow
         try (Connection con = DataSource.getConnection();
              PreparedStatement pst = con.prepareStatement( sql )) {
             pst.executeUpdate();
             return true;
         } catch (SQLException throwables) {
+            //noinspection CallToPrintStackTrace
             throwables.printStackTrace();
             return false;
         }
