@@ -17,6 +17,7 @@
     <link href="assets/bootstrap-datepicker-1.6.4-dist/css/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css">
     <link href="assets/fontawesome/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="assets/jquery-confirm-v3.3.4-dist/jquery-confirm.min.css" rel="stylesheet" type="text/css">
+    <link href="assets/app/css/common.css" rel="stylesheet" type="text/css">
     <link href="assets/app/css/main.css" rel="stylesheet" type="text/css">
     <script src="assets/bootstrap-4.4.1-dist/js/vendor/jquery-3.4.0.min.js"></script>
     <script src="assets/bootstrap-4.4.1-dist/js/vendor/popper.min.js"></script>

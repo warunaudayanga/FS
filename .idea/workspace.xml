@@ -10,17 +10,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f8edc28b-1a7a-408b-a0a3-54df6e3a5ec2" name="Changes" comment="After long time">
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/assets/app/css/common.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wx/jdbc/DataSource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wx/jdbc/DataSource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wx/controller/LogsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wx/controller/LogsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/assets/app/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/assets/app/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/assets/app/js/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/assets/app/js/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/assets/app/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/assets/app/js/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/main.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/main.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ChangesViewManager">
-    <option name="groupingKeys">
-      <option value="directory" />
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+      </list>
     </option>
   </component>
   <component name="Git.Settings">
@@ -77,6 +86,7 @@
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/Workspace/Java/FS",
+    "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -85,7 +95,7 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "settings.editor.selected.configurable": "preferences.general",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -125,7 +135,9 @@
       <method v="2" />
     </configuration>
     <configuration default="true" type="docker-deploy" factoryName="dockerfile" temporary="true">
-      <deployment type="dockerfile" />
+      <deployment type="dockerfile">
+        <settings />
+      </deployment>
       <method v="2" />
     </configuration>
     <list>
@@ -166,7 +178,8 @@
       <workItem from="1703268865319" duration="2632000" />
       <workItem from="1703271696984" duration="1686000" />
       <workItem from="1703274913715" duration="1895000" />
-      <workItem from="1703280084152" duration="3169000" />
+      <workItem from="1703280084152" duration="3550000" />
+      <workItem from="1703313926163" duration="2075000" />
     </task>
     <task id="LOCAL-00001" summary="New Changes and Configs">
       <created>1642008186335</created>
@@ -222,7 +235,15 @@
       <option name="project" value="LOCAL" />
       <updated>1703282527133</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="After long time">
+      <option name="closed" value="true" />
+      <created>1703283603445</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1703283603445</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -289,5 +310,9 @@
     <MESSAGE value="New Changes and Configs" />
     <MESSAGE value="After long time" />
     <option name="LAST_COMMIT_MESSAGE" value="After long time" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

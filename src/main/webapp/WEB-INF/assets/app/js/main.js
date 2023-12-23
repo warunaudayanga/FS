@@ -1,16 +1,17 @@
 // Ready
+// noinspection JSCheckFunctionSignatures
+
 let tmp;
 let snackBar = new SnackBar();
 let spinner = true
 let spinnerCount = 0;
 let blockWindow = false
-$(() => $('.nav-item[data-view="sales"]').trigger( "click" ));
-
+$(() => $('.nav-item[data-view="sales"]').trigger("click"));
 
 setInterval(function () {
-    console.log(spinnerCount);
-    if(spinnerCount < 1) $('.spinner-back-drop').hide();
+    if (spinnerCount < 1) $('.spinner-back-drop').hide();
 }, 100);
+
 setInterval(function () {
     $.ajax({
         url: 'stock/check',
@@ -30,7 +31,7 @@ setInterval(function () {
             }
         },
         error: function () {
-            if(!blockWindow) {
+            if (!blockWindow) {
                 $.alert({
                     theme: 'material',
                     type: 'red',
@@ -54,16 +55,19 @@ setInterval(function () {
         }
     });
 }, 1000);
+
 const notificationOpen = () => {
     $('.notification-container').show()
     $('.notification-container').animate({opacity: 1}, 'fast');
 
 }
+
 const notificationClose = () => {
     $('.notification-container').removeClass('show');
     $('.notification-container').animate({opacity: 0}, 'fast');
     $('.notification-container').hide();
 }
+
 const error = (msg, elem = false) => {
     $.alert({
         theme: 'material',
@@ -78,31 +82,32 @@ const error = (msg, elem = false) => {
             }
         },
         onDestroy: () => {
-            if(elem) elem.trigger('focus').select();
+            if (elem) elem.trigger('focus').select();
         }
     });
 }
-const prompt = (path, type, id = false) => {
-    id = id? parseInt(id): type == 'Update' || type == 'View'? parseInt($('.data-table tr.active').find('[data-id]').data('id')): 0;
+
+const prompt = (path, type, id = '') => {
+    id = id ? parseInt(id) : type == 'Update' || type == 'View' ? parseInt($('.data-table tr.active').find('[data-id]').data('id')) : 0;
     // noinspection JSIncompatibleTypesComparison
     $.confirm({
         columnClass: 'col-md-5',
         content: function () {
             let self = this;
             return $.ajax({
-                url: path + '/' + (type == 'Print'? 'getPrint': type == 'View'? 'getView': 'get'),
+                url: path + '/' + (type == 'Print' ? 'getPrint' : type == 'View' ? 'getView' : 'get'),
                 type: 'post',
                 dataType: 'html',
-                data : { id: id}
+                data: {id: id}
             }).done(function (response) {
                 self.setContent(response);
-            }).fail(function(){
+            }).fail(function () {
                 self.setContent('Unexpected error occurred!');
             });
         },
-        onContentReady: function(){
-            if(this.$content.find('[data-col-class]')) this.setColumnClass(this.$content.find('[data-col-class]').data('col-class'));
-            if(type != "Print"){
+        onContentReady: function () {
+            if (this.$content.find('[data-col-class]')) this.setColumnClass(this.$content.find('[data-col-class]').data('col-class'));
+            if (type != "Print") {
                 this.setTitle(type + ' ' + $('.ajax-form').data('form'))
                 this.$content.find('select.select-picker').each(function () {
                     let $this = $(this).selectpicker({
@@ -112,7 +117,7 @@ const prompt = (path, type, id = false) => {
                         liveSearchStyle: 'contains',
                         liveSearchPlaceholder: 'Search'
                     });
-                    if(this.hasAttribute('data-sibling-name')) $this.siblings('button').width(($( `[name="${$this.data('sibling-name')}"]`).outerWidth() + 3) + 'px')
+                    if (this.hasAttribute('data-sibling-name')) $this.siblings('button').width(($(`[name="${$this.data('sibling-name')}"]`).outerWidth() + 3) + 'px')
                 });
                 $(`[data-set][max]`).qtyTip();
 
@@ -124,16 +129,16 @@ const prompt = (path, type, id = false) => {
             let lastElementName = '';
             let i = 1;
             this.$content.find('input:not([readonly], [disabled], [role="combobox"], [type="hidden"]), textarea:not([readonly], [disabled]), button.dropdown-toggle:not([readonly], [disabled]), select:not(.select-picker, [readonly], [disabled])').each(function () {
-                if(this.type == 'radio') {
-                    if($(this).prop('name') == lastElementName) return true;
+                if (this.type == 'radio') {
+                    if ($(this).prop('name') == lastElementName) return true;
                     lastElementName = $(this).prop('name');
                 }
                 $(this).attr('data-index', i++);
             })
             if (this.$content.find('.focus-me').length > 0) {
                 let elem = this.$content.find('.focus-me').first();
-                tmp = elem;if(elem.hasClass('select-picker')) {
-                    console.log(elem.find('button'));
+                tmp = elem;
+                if (elem.hasClass('select-picker')) {
                     elem.find('button').trigger('focus').trigger('select');
                 }
                 // elem.focus();
@@ -144,14 +149,16 @@ const prompt = (path, type, id = false) => {
         buttons: {
             cancel: {
                 keys: ['esc'],
-                text: type == 'View'? 'OK': 'Cancel',
-                btnClass: type == 'View'? 'btn-blue': ''
+                text: type == 'View' ? 'OK' : 'Cancel',
+                btnClass: type == 'View' ? 'btn-blue' : ''
             },
             reset: {
                 isHidden: type != 'Add',
                 action: function () {
                     this.$content.find('.form-control:not(.no-reset)').val('')
-                    this.$content.find('select:not([readonly]) option').prop('selected', function() {return this.defaultSelected;});
+                    this.$content.find('select:not([readonly]) option').prop('selected', function () {
+                        return this.defaultSelected;
+                    });
                     this.$content.find('[type="checkbox"]:not([readonly])').prop('checked', false);
                     this.$content.find('.select-picker').selectpicker('refresh');
                     $(`[data-set][max]`).prop('max', '');
@@ -163,9 +170,9 @@ const prompt = (path, type, id = false) => {
                 text: type,
                 btnClass: 'btn-blue',
                 keys: ['enter', 'space'],
-                action: function(){
+                action: function () {
                     let self = this;
-                    if(type != "Print") {
+                    if (type != "Print") {
                         let err = false;
                         let form = $('.ajax-form').find('[data-msg]').each(function () {
                             let input = $(this);
@@ -195,7 +202,7 @@ const prompt = (path, type, id = false) => {
                                         search();
                                         if (type == 'Update') snackBar.success(form.data('form') + ' updated successfully.');
                                         else snackBar.success('New ' + form.data('form').toLowerCase() + ' added successfully.');
-                                        if(form.find('[data-print]').val()) prompt(path, 'Print', form.find('[data-print]').val());
+                                        if (form.find('[data-print]').val()) prompt(path, 'Print', form.find('[data-print]').val());
                                     } else {
                                         self.close()
                                         error('Unexpected error occurred!')
@@ -216,15 +223,16 @@ const prompt = (path, type, id = false) => {
         }
     });
 }
+
 const createTableRows = (result) => {
     if (result) {
         let rows = "";
         for (let record of result) {
             let row = "";
-            for (let field of (record.row === undefined? record: record.row)) {
+            for (let field of (record.row === undefined ? record : record.row)) {
                 if (typeof field === "object") {
                     // noinspection JSUnresolvedVariable
-                    if(field.attrs === undefined) {
+                    if (field.attrs === undefined) {
                         row += `<td ${field.attr}="${field.value}" ${field.isHidden ? 'class="d-none"' : ''}>${field.value}</td>`;
                     } else {
                         let attrs = "";
@@ -239,7 +247,7 @@ const createTableRows = (result) => {
                 }
             }
             // noinspection JSUnresolvedVariable
-            if(record.attrs === undefined) {
+            if (record.attrs === undefined) {
                 rows += `<tr>${row}</tr>`
             } else {
                 let attrs = "";
@@ -256,6 +264,7 @@ const createTableRows = (result) => {
         return `<tr class="no-record"><td colspan="20">No records.</td></tr>`;
     }
 }
+
 const search = () => {
     $('.spinner-back-drop').show();
     spinnerCount += 1;
@@ -264,7 +273,7 @@ const search = () => {
         type: 'post',
         dataType: 'json',
         data: {
-            term: $('.options .term').length? replace($('.options .term').val()): "",
+            term: $('.options .term').length ? replace($('.options .term').val()) : "",
             sort: $('.options select.sort').val(),
             order: $('.options select.order').val(),
         },
@@ -292,83 +301,96 @@ const replace = (text) => text.replace(/'/i, "\\'");
 // Common
 $(document).on('click', '.nav-item:not(#logout), .options .load, .options .back', function () {
     let $this = $(this);
-    if($this.hasClass('nav-item')) $this.addClass('active').siblings().removeClass('active');
+    if ($this.hasClass('nav-item')) $this.addClass('active').siblings().removeClass('active');
     spinnerCount += 1;
     $('.spinner-back-drop').show();
     $.ajax({
         url: 'getView',
         type: 'post',
         dataType: 'html',
-        data: { view: $this.data('view')},
-        success: function(result){
+        data: {view: $this.data('view')},
+        success: function (result) {
             $('#content').html(result);
             if ($('.options').data('path') !== undefined) search();
-            if(eval(`typeof ${$this.data('view')}Initial === 'function'`)) {
+            if (eval(`typeof ${$this.data('view')}Initial === 'function'`)) {
+                // noinspection JSUnresolvedReference
                 eval($this.data('view') + "Initial()")
             }
             spinnerCount -= 1;
         }
     });
 });
+
 $(document).on('click', '#logout', function () {
     location.href = 'logout'
 });
+
 $(document).on('click', '.data-table tbody tr:not(.empty)', function () {
     $(this).addClass('active').siblings().removeClass('active');
     $('.options .update, .options .update-status, .complete-order, .options .delete, .options .view').prop('disabled', false);
     let label = $(this).find('[data-status]').text();
-    $('.options .update-status').text(label == 'Enabled'? 'Disable': label == 'Disabled'? 'Enable': label == 'Complete'? 'Pending': 'Complete');
-    if($(this).data('unit')) {
-        if($(this).data('unit') == 'i') {
+    $('.options .update-status').text(label == 'Enabled' ? 'Disable' : label == 'Disabled' ? 'Enable' : label == 'Complete' ? 'Pending' : 'Complete');
+    if ($(this).data('unit')) {
+        if ($(this).data('unit') == 'i') {
             $('.options .amount').prop('min', '1');
         } else {
             $('.options .amount').prop('min', '0.05');
         }
     }
 });
+
 $(document).on('click', '.notification-toggle', function () {
     $('.notification-container').toggleClass('show');
-    if($('.notification-container').hasClass('show')) {
+    if ($('.notification-container').hasClass('show')) {
         notificationOpen();
     } else {
         notificationClose();
     }
 });
+
 $(document).on('click', function (e) {
-    if(!($(e.target)[0] == $('.notification-toggle')[0] || $(e.target)[0] == $('.notification-toggle').children()[0] || $(e.target)[0] == $('.notification-pane')[0])) {
+    if (!($(e.target)[0] == $('.notification-toggle')[0] || $(e.target)[0] == $('.notification-toggle').children()[0] || $(e.target)[0] == $('.notification-pane')[0])) {
         notificationClose();
     }
 });
-$(document).on('change', '[min]', function(){
-    if($(this).data('unit') == 'i') $(this).val(parseInt($(this).val()));
-    if(parseFloat($(this).val()) < parseFloat($(this).prop('min'))){$(this).val($(this).prop('min'))}
+
+$(document).on('change', '[min]', function () {
+    if ($(this).data('unit') == 'i') $(this).val(parseInt($(this).val()));
+    if (parseFloat($(this).val()) < parseFloat($(this).prop('min'))) {
+        $(this).val($(this).prop('min'))
+    }
 });
-$(document).on('submit', 'form', function(){
+
+$(document).on('submit', 'form', function () {
     return false;
 });
+
 $(document).on('keydown', '.bootstrap-select .dropdown-toggle', function (e) {
-    if(e.key == ' ') $(this).siblings('select').selectpicker('toggle');
+    if (e.key == ' ') $(this).siblings('select').selectpicker('toggle');
 });
 
 $(document).on('keydown', '.options .term', function (e) {
-    if(e.key == 'Enter') {
+    if (e.key == 'Enter') {
         $(this).trigger('blur');
         $('.options .search').trigger('click');
-    } else if(e.key == 'ArrowUp' || e.key == 'ArrowDown') {
+    } else if (e.key == 'ArrowUp' || e.key == 'ArrowDown') {
         $(this).trigger('blur');
         $('.data-table tbody tr:not(.empty):first').trigger('click');
         $('.data-table tbody tr:not(.empty):first').trigger('focus').select();
     }
 });
+
 $(document).on('change', '.options .sort, .options .order', function () {
     search();
 });
+
 $(document).on('click', '.options .search', function () {
     search();
 });
+
 $(document).on('click', '.options .update-status', function () {
     let sTxt = $('.data-table tr.active').find('[data-status]').text();
-    let status = sTxt == 'Enabled' || sTxt == 'Complete'? 0: 1;
+    let status = sTxt == 'Enabled' || sTxt == 'Complete' ? 0 : 1;
     $.ajax({
         url: $('.options').data('path') + '/changeStat',
         type: 'post',
@@ -379,11 +401,11 @@ $(document).on('click', '.options .update-status', function () {
         },
         success: function (result) {
             if (result) {
-                $('.data-table tr.active').find('[data-status]').text(sTxt == 'Enabled'? 'Disabled': sTxt == 'Disabled'? 'Enabled': sTxt == 'Complete'? 'Pending': 'Complete');
-                $('.options .update-status').text(sTxt == 'Enabled'? 'Enable': sTxt == 'Disabled'? 'Disable': sTxt == 'Complete'? 'Complete': 'Pending');
-                if(sTxt == "Pending") {
+                $('.data-table tr.active').find('[data-status]').text(sTxt == 'Enabled' ? 'Disabled' : sTxt == 'Disabled' ? 'Enabled' : sTxt == 'Complete' ? 'Pending' : 'Complete');
+                $('.options .update-status').text(sTxt == 'Enabled' ? 'Enable' : sTxt == 'Disabled' ? 'Disable' : sTxt == 'Complete' ? 'Complete' : 'Pending');
+                if (sTxt == "Pending") {
                     $('.data-table tr.active').find('[data-pur-date]').text(new Date().toISOString().split('T')[0]);
-                } else if(sTxt == "Complete") {
+                } else if (sTxt == "Complete") {
                     $('.data-table tr.active').find('[data-pur-date]').text("-");
 
                 }
@@ -394,6 +416,7 @@ $(document).on('click', '.options .update-status', function () {
         }
     });
 });
+
 $(document).on('click', '.options .delete', function () {
     $.confirm({
         title: 'Confirm!',
@@ -405,7 +428,7 @@ $(document).on('click', '.options .delete', function () {
             yes: {
                 btnClass: 'btn-orange',
                 keys: ['enter', 'space'],
-                action: function(){
+                action: function () {
                     $.ajax({
                         url: $('.options').data('path') + '/delete',
                         type: 'post',
@@ -433,6 +456,7 @@ $(document).on('click', '.options .delete', function () {
         }
     });
 });
+
 $(document).on('click', '.options .more .dropdown-item', function () {
     let $this = $(this);
     $.ajax({
@@ -448,41 +472,42 @@ $(document).on('click', '.options .more .dropdown-item', function () {
 
 // User
 $(document).on('click', '#userView .options .new, #userView .options .update', function () {
-    prompt('emp', $(this).hasClass('update')? 'Update': 'Add')
+    prompt('emp', $(this).hasClass('update') ? 'Update' : 'Add')
 });
+
 $(document).on('click', '#userView .options .view', function () {
     prompt('emp', 'View')
 });
-$(document).on('click', '#positionView .options .new, #positionView .options .update', function (){
-    prompt('pos', $(this).hasClass('update')? 'Update': 'Add')
+
+$(document).on('click', '#positionView .options .new, #positionView .options .update', function () {
+    prompt('pos', $(this).hasClass('update') ? 'Update' : 'Add')
 });
 
 // Items
 $(document).on('click', '#itemView .options .new, #itemView .options .update', function () {
-    prompt('item', $(this).hasClass('update')? 'Update': 'Add')
+    prompt('item', $(this).hasClass('update') ? 'Update' : 'Add')
 });
-$(document).on('click', '#categoryView .options .new, #categoryView .options .update', function (){
-    prompt('cat', $(this).hasClass('update')? 'Update': 'Add')
+
+$(document).on('click', '#categoryView .options .new, #categoryView .options .update', function () {
+    prompt('cat', $(this).hasClass('update') ? 'Update' : 'Add')
 });
 
 // Stock
 $(document).on('click', '#stockView .options .new', function () {
     prompt('stock', 'Add');
 });
+
 $(document).on('click', '#stockView .options .decrease, #stockView .options .increase', function () {
     let id = $('.data-table tr.active').find('[data-id]').data('id');
     let oldValue = parseFloat($('.data-table tr.active').find('[data-qty]').text());
     let value = parseFloat($(this).parent().siblings('.amount').val());
     let newValue = 0;
-    console.log($('.data-table tr.active').find('[data-qty]').text());
-    console.log(value);
-    if($(this).hasClass('decrease')){
+    if ($(this).hasClass('decrease')) {
         newValue = oldValue - value;
-    }else{
+    } else {
         newValue = oldValue + value;
     }
-    console.log(newValue);
-    if(newValue >= 0){
+    if (newValue >= 0) {
         $.ajax({
             url: 'stock/change',
             type: 'post',
@@ -492,31 +517,33 @@ $(document).on('click', '#stockView .options .decrease, #stockView .options .inc
                 qty: newValue
             },
             success: function (result) {
-                if(result){
+                if (result) {
                     $('.data-table tr.active').find('[data-qty]').text(newValue);
                     snackBar.success('Stock value changed successfully.');
-                }else{
+                } else {
                     snackBar.error('Unexpected error occurred!');
                 }
             }
         });
-    }else{
+    } else {
         snackBar.error('Invalid value!')
     }
 });
 
 // Supplier
 $(document).on('click', '#supplierView .options .new, #supplierView .options .update', function () {
-    prompt('supplier', $(this).hasClass('update')? 'Update': 'Add')
+    prompt('supplier', $(this).hasClass('update') ? 'Update' : 'Add')
 });
 
 // Purchases
 $(document).on('click', '#purchasesView .options .new', function () {
     prompt('purchase', 'Add');
 });
+
 $(document).on('click', '#purchasesView .options .print', function () {
     prompt('purchase', 'Print', $('.data-table tr.active').find('[data-order-id]').text());
 });
+
 $(document).on('click', '#purchaseForm .add-item', function () {
     let newSet = $('[data-set]').last().data('set') + 1;
     let options = $('.items .bootstrap-select select').first().prop('data-set', newSet).clone()[0].innerHTML;
@@ -541,9 +568,10 @@ $(document).on('click', '#purchaseForm .add-item', function () {
     $('.prompt-table').find('.dropdown-toggle, [data-set]').not('[data-index], select, [readonly]').each(function () {
         $(this).attr('data-index', ++lastIndex);
     })
-    if($('#purchaseForm .delete-item').length > 1) $('#purchaseForm .delete-item').prop('disabled', false);
+    if ($('#purchaseForm .delete-item').length > 1) $('#purchaseForm .delete-item').prop('disabled', false);
     return false;
 });
+
 $(document).on('click', '#purchaseForm .delete-item', function () {
     let i = 1;
     $(this).parents('tr').remove();
@@ -552,7 +580,7 @@ $(document).on('click', '#purchaseForm .delete-item', function () {
         $(this).find('[data-set]').data('set', i);
         i++;
     });
-    if($('#purchaseForm .delete-item').length == 1) $('#purchaseForm .delete-item').prop('disabled', true);
+    if ($('#purchaseForm .delete-item').length == 1) $('#purchaseForm .delete-item').prop('disabled', true);
     return false;
 });
 
@@ -560,13 +588,15 @@ $(document).on('click', '#purchaseForm .delete-item', function () {
 $(document).on('click', '#salesView .options .new', function () {
     prompt('sales', 'Add');
 });
+
 $(document).on('click', '#salesView .options .print', function () {
     prompt('sales', 'Print', $('.data-table tr.active').find('[data-sale-id]').text());
 });
-$(document).on('changed.bs.select', '#salesForm [name="itemCode"]', function(){
+
+$(document).on('changed.bs.select', '#salesForm [name="itemCode"]', function () {
     let qty = $(this).parents('tr').find('[name="qty"]');
     qty.data('unit', $(this).children(':selected').data('unit'));
-    qty.prop('min', $(this).children(':selected').data('unit') == 'i'? 1: 0.05);
+    qty.prop('min', $(this).children(':selected').data('unit') == 'i' ? 1 : 0.05);
     if ($(this).children(':selected').data('qty') == 0) {
         $(this).selectpicker('val', null);
         $(this).parents('tr').find('[name="price"]').val("");
@@ -576,9 +606,11 @@ $(document).on('changed.bs.select', '#salesForm [name="itemCode"]', function(){
         qty.prop('max', $(this).children(':selected').data('qty'));
     }
 });
-$(document).on('change', '#salesForm [max]', function(){
-    if(parseFloat($(this).val()) > parseFloat($(this).prop('max'))) $(this).val($(this).prop('max'));
+
+$(document).on('change', '#salesForm [max]', function () {
+    if (parseFloat($(this).val()) > parseFloat($(this).prop('max'))) $(this).val($(this).prop('max'));
 });
+
 $(document).on('click', '#salesForm .add-item', function () {
     let newSet = $('[data-set]').last().data('set') + 1;
     let select = $('.items .bootstrap-select select').first().clone().data('set', newSet);
@@ -605,9 +637,10 @@ $(document).on('click', '#salesForm .add-item', function () {
     $('.prompt-table').find('.dropdown-toggle, [data-set]').not('[data-index], select, [readonly]').each(function () {
         $(this).attr('data-index', ++lastIndex);
     })
-    if($('#salesForm .delete-item').length > 1) $('#salesForm .delete-item').prop('disabled', false);
+    if ($('#salesForm .delete-item').length > 1) $('#salesForm .delete-item').prop('disabled', false);
     return false;
 });
+
 $(document).on('click', '#salesForm .delete-item', function () {
     let i = 1;
     $(this).parents('tr').remove();
@@ -616,7 +649,7 @@ $(document).on('click', '#salesForm .delete-item', function () {
         $(this).find('[data-set]').data('set', i);
         i++;
     });
-    if($('#salesForm .delete-item').length == 1) $('#salesForm .delete-item').prop('disabled', true);
+    if ($('#salesForm .delete-item').length == 1) $('#salesForm .delete-item').prop('disabled', true);
     return false;
 });
 
@@ -652,6 +685,7 @@ const accessInitial = () => {
         }
     })
 }
+
 const getAccessData = (empID) => {
     $('.spinner-back-drop').show();
     spinnerCount += 1;
@@ -659,12 +693,12 @@ const getAccessData = (empID) => {
         url: 'access/get',
         type: 'post',
         dataType: 'json',
-        data: { empID: parseInt(empID)},
-        success: function(result){
+        data: {empID: parseInt(empID)},
+        success: function (result) {
             $('#accessView .switch input').prop('checked', false);
-            if(result.data == 'error'){
+            if (result.data == 'error') {
                 snackBar.error('Unexpected error occurred!');
-            }else if(result){
+            } else if (result) {
                 result.forEach(function (item) {
                     $(`#accessView .switch [data-type="${item.type}"][data-option="${item.option}"]`).prop('checked', true);
                 });
@@ -674,17 +708,21 @@ const getAccessData = (empID) => {
         }
     });
 }
+
 $(document).on('click', '#accessView .select', function () {
     getAccessData($('#accessView select.emp-id').val());
 });
+
 $(document).on('click', '#accessView .enable', function () {
     $('.switch input').prop('checked', true).parents('.option')
         .find('.list-group .switch input').prop('disabled', false);
 });
+
 $(document).on('click', '#accessView .disable', function () {
     $('.switch input').prop('checked', false).parents('.option')
         .find('.list-group .switch input').prop('disabled', true);
 });
+
 $(document).on('click', '#accessView .save', function () {
     let accessDataList = [];
     $('#accessView .switch input:checked').each(function () {
@@ -701,16 +739,17 @@ $(document).on('click', '#accessView .save', function () {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        success: function(result){
-            if(result) snackBar.success('User access changed successfully.');
+        success: function (result) {
+            if (result) snackBar.success('User access changed successfully.');
         }
     });
 });
-$(document).on('change', '#accessView .switch input[data-type="view"]',function () {
+
+$(document).on('change', '#accessView .switch input[data-type="view"]', function () {
     let children = $(this).parents('.option').find('.list-group .switch input');
-    if(!$(this).prop('checked')) {
+    if (!$(this).prop('checked')) {
         children.prop({'checked': false, 'disabled': true});
-    }else{
+    } else {
         children.prop('disabled', false);
     }
 });
@@ -726,8 +765,8 @@ $(document).on('click', '#preferencesView .options .save', function () {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        success: function(result){
-            if(result) snackBar.success('Preferences changed successfully.');
+        success: function (result) {
+            if (result) snackBar.success('Preferences changed successfully.');
         }
     });
 });
@@ -738,9 +777,10 @@ const logsInitial = () => {
     $('.datepicker').datepicker({
         format: "MM dd, yyyy",
         autoclose: true
-    }).datepicker("setDate",'now');
+    }).datepicker("setDate", 'now');
     $('.search-log').trigger('click');
 }
+
 $(document).on('click', '#logsView .options .date-type input', function () {
     let $this = $(this);
     $(".datepicker").datepicker('destroy').datepicker({
@@ -748,8 +788,9 @@ $(document).on('click', '#logsView .options .date-type input', function () {
         viewMode: $this.val(),
         minViewMode: $this.val(),
         autoclose: true
-    }).datepicker("setDate",'now');
+    }).datepicker("setDate", 'now');
 });
+
 $(document).on('click', '#logsView .options .search-log', function () {
     // let date = ;
     $.ajax({
@@ -760,12 +801,13 @@ $(document).on('click', '#logsView .options .search-log', function () {
             type: $('.options .date-type .active input').val(),
             date: new Date($('.options .datepicker').val() + 'GMT').toISOString().split('T')[0]
         },
-        success: function(result){
-            if(result.data === "error") {
+        success: function (result) {
+            if (result.data === "error") {
                 snackBar.error('Unexpected error occurred!');
             } else {
+                console.log(result.data);
                 $('.data-table table tbody').html(createTableRows(result.data));
-                if(result.data) {
+                if (result.data) {
                     // noinspection JSUnresolvedVariable
                     $('.data-table table tbody').append(
                         `<tr>

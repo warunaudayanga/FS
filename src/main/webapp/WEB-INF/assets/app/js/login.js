@@ -5,15 +5,15 @@ $(() => {
             url: 'tryConnection',
             type: 'post',
             dataType: 'text',
-            success: function(result){
+            success: function (result) {
                 $('#uid, #password, #login').prop('disabled', true);
-                if(result == "1045"){
+                if (result == "1045") {
                     connError();
                 } else if (result == "1049") {
                     dbError();
-                } else if(result == "0"){
+                } else if (result == "0") {
                     mysqlErr();
-                } else if(result != "ok"){
+                } else if (result != "ok") {
                     connUnError();
                 } else {
                     $('#uid, #password, #login').prop('disabled', false);
@@ -22,9 +22,11 @@ $(() => {
             }
         })
     }
+
     let mysqlErr = () => {
         connUnError(true);
     }
+
     let connError = () => {
         $.confirm({
             title: 'Connection Error!',
@@ -44,7 +46,7 @@ $(() => {
                     text: "Connect",
                     btnClass: 'btn-blue',
                     keys: ['enter'],
-                    action: function(){
+                    action: function () {
                         let username = this.$content.find('.mysql-username').val();
                         let password = this.$content.find('.mysql-password').val();
                         $.ajax({
@@ -55,12 +57,12 @@ $(() => {
                                 username: username,
                                 password: password
                             },
-                            success: function(result){
-                                if(result == "ok") {
+                            success: function (result) {
+                                if (result == "ok") {
                                     connSuccess();
-                                } else if(result == "1045"){
+                                } else if (result == "1045") {
                                     connDenied();
-                                } else if(result == "1049"){
+                                } else if (result == "1049") {
                                     dbError();
                                 } else {
                                     connUnError();
@@ -73,6 +75,7 @@ $(() => {
             }
         });
     }
+
     let connDenied = () => {
         $.alert({
             theme: 'material',
@@ -94,29 +97,31 @@ $(() => {
             }
         });
     }
+
     let dbError = () => {
         connSuccess(true);
     }
+
     let connSuccess = (dbErr = false) => {
         $.confirm({
             theme: 'material',
-            type: dbErr? 'orange': 'green',
+            type: dbErr ? 'orange' : 'green',
             boxWidth: '350px',
             useBootstrap: false,
-            title: dbErr? 'Database Not Found': 'Connection Successful',
+            title: dbErr ? 'Database Not Found' : 'Connection Successful',
             titleClass: 'text-center',
-            icon: dbErr? 'fas fa-exclamation-triangle': 'fas fa-check',
+            icon: dbErr ? 'fas fa-exclamation-triangle' : 'fas fa-check',
             backgroundDismiss: false,
-            content: dbErr? 'Connection is Successful, But the Database Does not Exists': false,
+            content: dbErr ? 'Connection is Successful, But the Database Does not Exists' : false,
             buttons: {
                 database: {
-                    text: (dbErr? 'Create': 'Reset') + ' Database',
-                    btnClass: dbErr? 'btn-primary': '',
+                    text: (dbErr ? 'Create' : 'Reset') + ' Database',
+                    btnClass: dbErr ? 'btn-primary' : '',
                     action: function () {
                         let self = this;
                         self.buttons.database.el.hide();
                         self.showLoading()
-                        self.setTitle("Database " + (dbErr? 'Created': 'Updated') + " Successfully");
+                        self.setTitle("Database " + (dbErr ? 'Created' : 'Updated') + " Successfully");
                         self.setContent('<span></span>');
                         self.setType('green');
                         self.setIcon('fas fa-check');
@@ -125,8 +130,8 @@ $(() => {
                             url: 'resetDatabase',
                             type: 'post',
                             dataType: 'text',
-                            success: function(result){
-                                if(result == 'true') {
+                            success: function (result) {
+                                if (result == 'true') {
                                     self.buttons.login.el.show();
                                     self.hideLoading();
                                 } else {
@@ -141,7 +146,7 @@ $(() => {
                     keys: ['enter'],
                     isHidden: dbErr,
                     btnClass: 'btn-primary',
-                    action: function() {
+                    action: function () {
                         $('#uid, #password, #login').prop('disabled', false).trigger('focus');
                         this.close()
                     }
@@ -149,6 +154,7 @@ $(() => {
             }
         });
     }
+
     let connUnError = (mysql = false) => {
         $.alert({
             theme: 'material',
@@ -159,12 +165,12 @@ $(() => {
             titleClass: 'text-center',
             icon: 'fas fa-exclamation-triangle',
             backgroundDismiss: false,
-            content: '<div class="text-center">' + (mysql? 'MySQL Server is not Running': 'Unexpected Error') + '</div>',
+            content: '<div class="text-center">' + (mysql ? 'MySQL Server is not Running' : 'Unexpected Error') + '</div>',
             buttons: {
                 exitApp: {
                     text: 'Exit',
-                    btnClass: !mysql? 'btn-primary': '',
-                    keys: !mysql? ['enter']: [],
+                    btnClass: !mysql ? 'btn-primary' : '',
+                    keys: !mysql ? ['enter'] : [],
                     action: function () {
                         window.close();
                     }
@@ -180,6 +186,7 @@ $(() => {
             }
         });
     }
+
     let error = (content, fn = false) => {
         $.alert({
             theme: 'material',
@@ -189,29 +196,32 @@ $(() => {
             onDestroy: fn
         });
     }
+
     let login = () => {
         let uid = parseInt($('#uid').val());
         let pass = $('#password').val();
         let ptn = /[\D]/;
         ptn.test("The best things in life are free!");
-        if(uid == '' || ptn.test(uid.toString())){
+        if (uid == '' || ptn.test(uid.toString())) {
             error('Please enter User ID', $('#uid').trigger('focus'));
-        }else if(pass == ''){
+        } else if (pass == '') {
             error('Please enter Password', $('#password').trigger('focus'));
-        }else{
+        } else {
+            $('.spinner-back-drop').show();
+
             $.ajax({
                 url: 'verifyUser',
                 type: 'post',
                 dataType: 'json',
                 data: {uid: uid, password: pass},
-                success: function(result){
-                    if(result.data == 'invalid'){
+                success: function (result) {
+                    if (result.data == 'invalid') {
                         error('Invalid User ID or Password');
-                    }else if(result.data == 'disabled'){
+                    } else if (result.data == 'disabled') {
                         error('User is disabled');
-                    }else if(result.data){
+                    } else if (result.data) {
                         window.location.href = "main";
-                    }else{
+                    } else {
                         error('Unexpected error occurred!');
                     }
                 }
@@ -237,7 +247,7 @@ $(() => {
     // connTry();
 
     $(document).on('keydown', function (e) {
-        if(e.key == 'Enter') {
+        if (e.key == 'Enter') {
             if (e.target.id == 'uid' && $(e.target).val() != '') $('#password').trigger('focus');
             if (e.target.id == 'password' && $(e.target).val() != '') login();
         }

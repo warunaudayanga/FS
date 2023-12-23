@@ -87,6 +87,7 @@ public class LogsController {
                         jsArray.put(jsArr);
                     } while (rs.next());
                     double dif = (sTotal > pTotal ? sTotal - pTotal : pTotal - sTotal);
+                    //noinspection UnnecessaryToStringCall
                     return "{\"data\": " + jsArray.toString() + "," +
                             "\"sTotal\": \"" + (sTotal > 0 ? new DecimalFormat("#,###.00").format(sTotal) : "0.00") + "\"," +
                             "\"pTotal\": \"" + (pTotal > 0 ? new DecimalFormat("#,###.00").format(pTotal) : "0.00") + "\"," +

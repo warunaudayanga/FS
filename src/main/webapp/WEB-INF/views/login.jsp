@@ -8,6 +8,7 @@
     <link href="assets/bootstrap-4.4.1-dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="assets/fontawesome/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="assets/jquery-confirm-v3.3.4-dist/jquery-confirm.min.css" rel="stylesheet" type="text/css">
+    <link href="assets/app/css/common.css" rel="stylesheet" type="text/css">
     <link href="assets/app/css/login.css" rel="stylesheet" type="text/css">
     <script src="assets/bootstrap-4.4.1-dist/js/vendor/jquery3.2.1.min.js"></script>
     <script src="assets/bootstrap-4.4.1-dist/js/vendor/popper.min.js"></script>
@@ -37,6 +38,16 @@
             <button id="login" class="btn btn-lg btn-primary ml-auto mr-auto mt-3 d-block">Login</button>
         </div>
         <div class="col-lg-4 col-md-4 mt-5">
+        </div>
+    </div>
+
+    <div class="spinner-back-drop">
+        <div class="spinner">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
         </div>
     </div>
 </div>
