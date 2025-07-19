@@ -54,7 +54,7 @@ setInterval(function () {
             }
         }
     });
-}, 1000);
+}, 10000);
 
 const notificationOpen = () => {
     $('.notification-container').show()
