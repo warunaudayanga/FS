@@ -10,13 +10,13 @@ public class DataSource {
     static {
         ds.setDriverClassName("com.mysql.cj.jdbc.Driver");
 
-        ds.setUrl("jdbc:mysql://23.95.110.143/fs-dev");
-        ds.setUsername("fs-dev");
-        ds.setPassword("fs-dev@root");
+//        ds.setUrl("jdbc:mysql://localhost/pos");
+//        ds.setUsername("root");
+//        ds.setPassword("root");
 
-//        ds.setUrl("jdbc:mysql://cis9cbtgerlk68wl.cbetxkdyhwsb.us-east-1.rds.amazonaws.com/ornk3mji0rha8t98");
-//        ds.setUsername("zkqpjin7s2gdfbm3");
-//        ds.setPassword("rjhnr0kwkoqhzuel");
+        ds.setUrl("jdbc:mysql://198.46.188.104/fs");
+        ds.setUsername("fs");
+        ds.setPassword("root@fs");
 
         ds.setMinIdle(5);
         ds.setMaxIdle(10);

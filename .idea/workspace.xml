@@ -10,15 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f8edc28b-1a7a-408b-a0a3-54df6e3a5ec2" name="Changes" comment="After long time">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/assets/app/css/common.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wx/controller/LogsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wx/controller/LogsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/assets/app/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/assets/app/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/assets/app/js/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/assets/app/js/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/assets/app/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/assets/app/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/main.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/main.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wx/jdbc/DataSource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wx/jdbc/DataSource.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +64,6 @@
   &quot;associatedIndex&quot;: 5
 }</component>
   <component name="ProjectId" id="23bTPkCqAdSfkYqTAEsSIB7GIjf" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -80,10 +74,12 @@
     "Docker.Dockerfile build.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Tomcat Server.Tomcat 8.5.97.executor": "Run",
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
+    "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/Workspace/Java/FS",
     "list.type.of.created.stylesheet": "CSS",
@@ -127,7 +123,6 @@
         <settings>
           <option name="imageTag" value="maven3.8.4-openjdk-8_build" />
           <option name="buildCliOptions" value="--target build" />
-          <option name="buildKitEnabled" value="true" />
           <option name="buildOnly" value="true" />
           <option name="sourceFilePath" value="Dockerfile" />
         </settings>
@@ -155,7 +150,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="jdk-1.8.0_392-corretto-1.8.0_392-249ae16d76d6-ec8bc16d" />
+        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.26927.53" />
+        <option value="bundled-js-predefined-d6986cc7102b-09060db00ec0-JavaScript-IU-251.26927.53" />
       </set>
     </attachedChunks>
   </component>
@@ -180,6 +176,7 @@
       <workItem from="1703274913715" duration="1895000" />
       <workItem from="1703280084152" duration="3550000" />
       <workItem from="1703313926163" duration="2075000" />
+      <workItem from="1752913301895" duration="2354000" />
     </task>
     <task id="LOCAL-00001" summary="New Changes and Configs">
       <created>1642008186335</created>
